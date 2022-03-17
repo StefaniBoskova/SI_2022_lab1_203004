@@ -1,5 +1,7 @@
 1.Bread х 1
-2.Milk х 3
+2.Milk х 2
 3.Eggs х 5
-4.PB х 1
-5.Water х 4
+4.Rice cakes x 10
+5.Water х 3
+6.Oil x 1
+
