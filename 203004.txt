@@ -1,0 +1,135 @@
+4. Го клонираме репозиториумот кој шттуку го креиравме кај нас локално и влегуваме во него
+$ git clone https://github.com/StefaniBoskova/SI_2022_lab1_203004.git
+$ cd SI_2022_lab1_203004
+
+5. Во локалниот репозиториум креираме текст документ кој потоа го додаваме на сцена и го комитуваме.
+$ git add shopping_list.txt
+$ git commit -m "Add 5 items to the shopping list"
+
+6.Со командата git status гледаме дека има направено промена во креираниот текст документ и повторно го додаваме и комитуваме
+$ git commit -a -m "Add quantities to the items"
+
+7. Креираме две нови гранки
+$ git branch branch1
+$ git branch branch2
+
+8. Досегашните логови
+$ git log
+commit 9cac1a4977372279b44a59458031eb808c8e4881 (HEAD -> master, branch2, branch1)
+Author: Stefani Boskova <stefaniboshkova@gmail.com>
+Date:   Tue Mar 15 15:38:29 2022 +0100
+
+    Add quantities to the items
+
+commit ccdc20d36fb8813d5f47f13aa8e6745a26dfe25f
+Author: Stefani Boskova <stefaniboshkova@gmail.com>
+Date:   Tue Mar 15 15:32:39 2022 +0100
+
+    Add 5 items to the shopping list
+
+commit 434fbd79b5665d7bd6217215c8b082c750ac17c7 (origin/master, origin/HEAD)
+Author: StefaniBoskova <101138892+StefaniBoskova@users.noreply.github.com>
+Date:   Tue Mar 15 15:24:28 2022 +0100
+
+    Initial commit
+
+commit 35256e14a59bc177b5c387feaf508179ed2bdf9c
+Author: StefaniBoskova <101138892+StefaniBoskova@users.noreply.github.com>
+Date:   Tue Mar 15 15:24:03 2022 +0100
+
+:
+
+9. Ги синхронизираме новите гранки и master гранката со репозиториумотж
+$ git push --set-upstream origin master
+$ git push --set-upstream origin branch1
+$ git push --set-upstream origin branch2
+
+10. Се префрламе на гранката branch1
+$ git checkout branch1
+
+11. Локално правиме промена во текст документот, која промена потоа ја додаваме и комитуваме
+$ git commit -a -m "Change quantity od item #5"
+
+12. Се враќаме на гранката master
+$ git checkout master
+
+13. Локално правиме промена во текст документот, а потоа ја додаваме и комитуваме
+$ git commit -a -m "Change quantity od item #2"
+
+14. Повторно ги синхронизираме сите гранки со оддалечениот репозиториум
+$ git push
+$ git push --set-upstream origin branch1
+
+15. Се префрламе на гранката branch2
+$ git checkout branch2
+
+16. Локално правиме промена во текст документот која потоа ја додаваме и комитуваме
+$ git commit -a -m "Modify item #4"
+
+17. Досегашните логови
+$ git log
+commit b495132798ef51bcd022256260a485bfa8ee0095 (HEAD -> branch2)
+Author: Stefani Boskova <stefaniboshkova@gmail.com>
+Date:   Tue Mar 15 16:02:11 2022 +0100
+
+    Modify item #4
+
+commit 9cac1a4977372279b44a59458031eb808c8e4881 (origin/branch2)
+Author: Stefani Boskova <stefaniboshkova@gmail.com>
+Date:   Tue Mar 15 15:38:29 2022 +0100
+
+    Add quantities to the items
+
+commit ccdc20d36fb8813d5f47f13aa8e6745a26dfe25f
+Author: Stefani Boskova <stefaniboshkova@gmail.com>
+Date:   Tue Mar 15 15:32:39 2022 +0100
+
+    Add 5 items to the shopping list
+
+commit 434fbd79b5665d7bd6217215c8b082c750ac17c7
+Author: StefaniBoskova <101138892+StefaniBoskova@users.noreply.github.com>
+Date:   Tue Mar 15 15:24:28 2022 +0100
+
+    Initial commit
+:
+
+18. Го повлекуваме последниот комит и правиме промена во на текст документот. Потоа ја спојуваме промената со претходниот комит, ја додаваме и повторно ја комитуваме.
+$ git reset --soft HEAD^
+$ git add shopping_list.txt
+$ git commit --amend -m "Modify item #4 and add item #6"
+
+19. Досегашните логови
+$ git log
+commit afa373c03ee0bec71a636ea576db50b19f52d15f (HEAD -> branch2)
+Author: Stefani Boskova <stefaniboshkova@gmail.com>
+Date:   Tue Mar 15 15:38:29 2022 +0100
+
+    Modify item #4 and add item #6
+
+commit ccdc20d36fb8813d5f47f13aa8e6745a26dfe25f
+Author: Stefani Boskova <stefaniboshkova@gmail.com>
+Date:   Tue Mar 15 15:32:39 2022 +0100
+
+    Add 5 items to the shopping list
+
+commit 434fbd79b5665d7bd6217215c8b082c750ac17c7
+Author: StefaniBoskova <101138892+StefaniBoskova@users.noreply.github.com>
+Date:   Tue Mar 15 15:24:28 2022 +0100
+
+    Initial commit
+
+commit 35256e14a59bc177b5c387feaf508179ed2bdf9c
+Author: StefaniBoskova <101138892+StefaniBoskova@users.noreply.github.com>
+Date:   Tue Mar 15 15:24:03 2022 +0100
+
+    Initial commit
+:
+
+20. Се префрламе на гранката master и потоа ја спојуваме гранката branch1 кон master. Тие се спојуваат со "ort" стратегија односно рекурзивно.
+$ git checkout master
+$ git merge branch1
+
+21. При обидот да ја споиме гранката branch2 со master ни се јавува конфликт кој конфликт го решаваме така што или ја прифаќаме верзијата на документот што е поставена на master или на branch2. По решавањето на конфликтот повторно ја спојуваме гранката.
+$ git merge branch2
+$ git commit -a
+
